@@ -3,7 +3,7 @@ using Example.Application.Interfaces.Components.Primary.TabPanel;
 
 namespace Example.Application.Interfaces.Components.Complex.Application
 {
-    public interface IPreviewPanelComponent
+    public interface IPreviewPanelComponent : IApplicationWebComponent
     {
         IFileViewPanelComponent FileViewPanel { get; }
 

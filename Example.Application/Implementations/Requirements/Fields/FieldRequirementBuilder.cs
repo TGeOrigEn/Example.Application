@@ -12,19 +12,25 @@ namespace Example.Application.Implementations.Requirements.Fields
         where TBuilder : FieldRequirementBuilder<TComponent, TBuilder>
         where TComponent : IFieldComponent
     {
-        public IOperationBuilder<TComponent, TBuilder> HasLabel(bool flag = true) =>
+        public virtual IOperationBuilder<TComponent, TBuilder> HasLabel(bool flag = true) =>
             CreateBuilder(new Requirement<TComponent, bool>(component => component.HasLabel(), flag, "Имеет заголовок"));
 
-        public IOperationBuilder<TComponent, TBuilder> ByPlaceholderEquality(string value) =>
+        public virtual IOperationBuilder<TComponent, TBuilder> ByPlaceholderEquality(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetPlaceholder(), value, "Имеет заполнитель", ByStringContent));
 
-        public IOperationBuilder<TComponent, TBuilder> ByLabelEquality(string value) =>
+        public virtual IOperationBuilder<TComponent, TBuilder> ByLabelEquality(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetLabel(), value, "Имеет заголовок", ByStringContent));
 
-        public IOperationBuilder<TComponent, TBuilder> ByPlaceholderContent(string value) =>
+        public override IOperationBuilder<TComponent, TBuilder> ByValueEquality(string? value) =>
+           CreateBuilder(new Requirement<TComponent, string?>(component => component.GetValue(), value, "Имеет значение"));
+
+        public virtual IOperationBuilder<TComponent, TBuilder> ByPlaceholderContent(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetPlaceholder(), value, "Содержит заполнитель", ByStringContent));
 
-        public IOperationBuilder<TComponent, TBuilder> ByLabelContent(string value) =>
+        public virtual IOperationBuilder<TComponent, TBuilder> ByLabelContent(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetLabel(), value, "Содержит заголовок", ByStringContent));
+
+        public override IOperationBuilder<TComponent, TBuilder> ByValueContent(string? value) =>
+            CreateBuilder(new Requirement<TComponent, string?>(component => component.GetValue(), value, "Содержит значение", ByStringContent));
     }
 }

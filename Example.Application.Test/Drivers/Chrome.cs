@@ -23,5 +23,11 @@ namespace Example.Application.Test.Drivers
 
             return new RemoteWebDriver(new Uri($"{host}wd/hub"), chromeOptions);
         }
+
+        public static IWebDriver Local()
+        {
+
+            return new ChromeDriver();
+        }
     }
 }

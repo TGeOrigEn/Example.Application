@@ -27,7 +27,7 @@ namespace Example.Application.Implementations.Requirements.Table
             int GetColumnIndex()
             {
                 var headerRequirement = new WebComponentRequirement<ITableColumnComponent>();
-                return column.Should(headerRequirement.IsAvalable().Perform()).Index;
+                return column.Should(headerRequirement.IsAvalable().Perform()).Index + 1;
             }
 
             var description = $"Относится к '{column}'";

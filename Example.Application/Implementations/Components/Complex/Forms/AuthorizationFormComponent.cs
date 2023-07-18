@@ -25,11 +25,11 @@ namespace Example.Application.Implementations.Components.Complex.Forms
         protected AuthorizationFormComponent()
         {
             var usernameFieldRequirement = new FieldRequirement<FieldComponent>()
-                .ByLabelEquality("Пользователь:")
+                .ByLabelEquality("Пользователь:").Or().ByPlaceholderEquality("Пользователь")
                 .Perform();
 
             var passwordFieldRequirement = new FieldRequirement<FieldComponent>()
-                .ByLabelEquality("Пароль:")
+                .ByLabelEquality("Пароль:").Or().ByPlaceholderEquality("Пароль")
                 .Perform();
 
             var loginButtonRequirement = new ButtonRequirement<ButtonComponent>()
@@ -50,7 +50,6 @@ namespace Example.Application.Implementations.Components.Complex.Forms
                 .WithRequirement(loginButtonRequirement)
                 .Perform();
         }
-
         protected override IDescription InitializeDescription() => DEFAULT_DESCRIPTION;
 
         public virtual IAuthorizationFormComponent LogIn(string username, string password)

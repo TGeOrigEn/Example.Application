@@ -1,9 +1,11 @@
 ﻿using Empyrean.Core.Interfaces;
 using Example.Application.Implementations.Components.Primary.Buttons;
+using Example.Application.Implementations.Components.Primary.Container;
 using Example.Application.Implementations.Components.Primary.Fields;
 using Example.Application.Implementations.Components.Primary.Fields.Dropdown;
 using Example.Application.Implementations.Components.Primary.Windows;
 using Example.Application.Implementations.Requirements.Buttons;
+using Example.Application.Implementations.Requirements.Dropdown;
 using Example.Application.Implementations.Requirements.Fields;
 using Example.Application.Interfaces.Components.Complex.Windows;
 using Example.Application.Interfaces.Components.Primary.Buttons;
@@ -59,6 +61,14 @@ namespace Example.Application.Implementations.Components.Complex.Windows
 
             SubjectField = GetComponent<FieldComponent>()
                 .WithRequirement(new FieldRequirement<FieldComponent>().ByLabelEquality("Тема:").Perform())
+                .Perform();
+
+            ObjectContainer = GetComponent<ContainerComponent>()
+                .WithRequirement(new ContainerRequirement<ContainerComponent>().ByLabelEquality("Объекты:").Perform())
+                .Perform();
+
+            FileContainer = GetComponent<ContainerComponent>()
+                .WithRequirement(new ContainerRequirement<ContainerComponent>().ByLabelEquality("Файлы:").Perform())
                 .Perform();
         }
 
