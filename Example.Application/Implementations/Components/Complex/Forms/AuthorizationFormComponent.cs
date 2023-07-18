@@ -50,6 +50,7 @@ namespace Example.Application.Implementations.Components.Complex.Forms
                 .WithRequirement(loginButtonRequirement)
                 .Perform();
         }
+
         protected override IDescription InitializeDescription() => DEFAULT_DESCRIPTION;
 
         public virtual IAuthorizationFormComponent LogIn(string username, string password)

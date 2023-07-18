@@ -50,6 +50,8 @@ namespace Example.Application.Implementations.Components.Primary.Fields
 
         public virtual bool HasLabel() => labelComponent.IsAvalable();
 
+        public bool HasPlaceholder() => HasAttribute(_PLACEHOLDER_ATTRIBUTE, inputComponent);
+
         public virtual string GetPlaceholder() => GetAttribute(_PLACEHOLDER_ATTRIBUTE, inputComponent);
 
         public virtual string GetLabel() => labelComponent.Properties.GetText();

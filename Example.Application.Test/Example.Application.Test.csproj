@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Empyrean.Core" Version="1.1.8" />
+    <PackageReference Include="Empyrean.Core" Version="1.2.4" />
     <PackageReference Include="Empyrean.Core.Allure" Version="1.1.8" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
     <PackageReference Include="NUnit" Version="3.13.3" />

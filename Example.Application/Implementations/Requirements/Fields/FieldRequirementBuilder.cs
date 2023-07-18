@@ -15,6 +15,9 @@ namespace Example.Application.Implementations.Requirements.Fields
         public virtual IOperationBuilder<TComponent, TBuilder> HasLabel(bool flag = true) =>
             CreateBuilder(new Requirement<TComponent, bool>(component => component.HasLabel(), flag, "Имеет заголовок"));
 
+        public virtual IOperationBuilder<TComponent, TBuilder> HasPlaceholder(bool flag = true) =>
+            CreateBuilder(new Requirement<TComponent, bool>(component => component.HasPlaceholder(), flag, "Имеет заполнитель"));
+
         public virtual IOperationBuilder<TComponent, TBuilder> ByPlaceholderEquality(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetPlaceholder(), value, "Имеет заполнитель", ByStringContent));
 

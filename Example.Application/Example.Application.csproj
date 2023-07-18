@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Empyrean.Core" Version="1.1.8" />
+    <PackageReference Include="Empyrean.Core" Version="1.2.4" />
   </ItemGroup>
 
 </Project>

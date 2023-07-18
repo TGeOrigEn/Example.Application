@@ -12,6 +12,8 @@
 
         bool HasLabel();
 
+        bool HasPlaceholder();
+
         string GetPlaceholder();
 
         string GetValue();
