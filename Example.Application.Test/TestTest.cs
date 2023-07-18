@@ -47,7 +47,7 @@ namespace Example.Application.Test
         {
             var guid = Guid.NewGuid().ToString();
 
-            Application.Loading.Wait(TimeSpan.Zero);
+            Application.Loading.Wait(TimeSpan.FromSeconds(1));
 
             Application.Head.MailButton.Click();
             Application.Body.ToolBar.WriteMessageButton.Click();
@@ -62,13 +62,13 @@ namespace Example.Application.Test
                 .WithRequirement(new WindowRequirement().ByTitleEquality("Выбор объектов").Perform())
                 .Perform();
 
-            Application.Loading.Wait(TimeSpan.Zero);
+            Application.Loading.Wait(TimeSpan.FromSeconds(1));
 
             var searchField = selectObjectWindow.GetComponent<SearchFieldComponent>().Perform();
             searchField.SetValue("ADMIN");
             searchField.Search();
 
-            Application.Loading.Wait(TimeSpan.Zero);
+            Application.Loading.Wait(TimeSpan.FromSeconds(1));
 
             selectObjectWindow.GetComponent<TableCellComponent>()
                 .WithRequirement(new TableCellRequirement<TableCellComponent>().ByValueEquality("ADMIN").Perform())
@@ -86,7 +86,7 @@ namespace Example.Application.Test
                 .Perform()
                 .Click();
 
-            Application.Loading.Wait(TimeSpan.Zero);
+            Application.Loading.Wait(TimeSpan.FromSeconds(1));
 
             var objectNames = new List<string>();
 
