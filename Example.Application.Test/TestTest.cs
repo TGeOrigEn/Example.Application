@@ -47,6 +47,8 @@ namespace Example.Application.Test
         {
             var guid = Guid.NewGuid().ToString();
 
+            Application.Loading.Wait(TimeSpan.Zero);
+
             Application.Head.MailButton.Click();
             Application.Body.ToolBar.WriteMessageButton.Click();
 
