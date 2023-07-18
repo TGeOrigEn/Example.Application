@@ -60,7 +60,7 @@ namespace Example.Application.Test
             Application.Head.SettingsButton.Click();
 
             var menuElementRequirement = new MenuElementRequirement()
-                .ByNameEquality("Выход")
+                .ByNameEquality("Р’С‹С…РѕРґ")
                 .Perform();
 
             Application.GetMenu().Perform().GetElement()
@@ -81,7 +81,7 @@ namespace Example.Application.Test
             var html = $"<html><body><video width='100%' height='100%' controls autoplay><source src='{src}' type='video/mp4'></video></body></html>";
 
             var content = Encoding.UTF8.GetBytes(html);
-            allure.AddAttachment("Видео", "text/html", content, ".html");
+            allure.AddAttachment("Р’РёРґРµРѕ", "text/html", content, ".html");
         }
     }
 }
