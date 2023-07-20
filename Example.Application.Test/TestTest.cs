@@ -22,7 +22,7 @@ namespace Example.Application.Test
     public class TestTest : WebApplicationTest
     {
         protected override IWebDriver Driver => Chrome.Remote(Host);
-        /* protected override IWebDriver Driver => Chrome.Local();*/
+        /*protected override IWebDriver Driver => Chrome.Local();*/
         protected override string Address => "http://10.0.11.18:8081/client/";
 
         [SetUp]
@@ -47,7 +47,7 @@ namespace Example.Application.Test
         {
             var guid = Guid.NewGuid().ToString();
 
-            Application.Loading.Wait(TimeSpan.FromSeconds(2));
+            //Application.Loading.Wait(TimeSpan.FromSeconds(2));
 
             Application.Head.MailButton.Click();
             Application.Body.ToolBar.WriteMessageButton.Click();
@@ -62,13 +62,13 @@ namespace Example.Application.Test
                 .WithRequirement(new WindowRequirement().ByTitleEquality("Выбор объектов").Perform())
                 .Perform();
 
-            Application.Loading.Wait(TimeSpan.FromSeconds(2));
+            //Application.Loading.Wait(TimeSpan.FromSeconds(2));
 
             var searchField = selectObjectWindow.GetComponent<SearchFieldComponent>().Perform();
             searchField.SetValue("ADMIN");
             searchField.Search();
 
-            Application.Loading.Wait(TimeSpan.FromSeconds(2));
+            //Application.Loading.Wait(TimeSpan.FromSeconds(2));
 
             selectObjectWindow.GetComponent<TableCellComponent>()
                 .WithRequirement(new TableCellRequirement<TableCellComponent>().ByValueEquality("ADMIN").Perform())
@@ -86,7 +86,7 @@ namespace Example.Application.Test
                 .Perform()
                 .Click();
 
-            Application.Loading.Wait(TimeSpan.FromSeconds(2));
+            //Application.Loading.Wait(TimeSpan.FromSeconds(2));
 
             var objectNames = new List<string>();
 
@@ -139,7 +139,7 @@ namespace Example.Application.Test
                 .Perform()
                 .Click();
 
-            Application.Loading.Wait(TimeSpan.FromSeconds(2));
+            //Application.Loading.Wait(TimeSpan.FromSeconds(2));
 
             var objects = Application.Body.ViewPanel.GetComponent<ContainerComponent>()
                 .WithRequirement(new ContainerRequirement<ContainerComponent>().ByLabelEquality("Объекты:").Perform())
@@ -167,14 +167,14 @@ namespace Example.Application.Test
                 .Perform()
                 .Click();
 
-            Application.Loading.Wait(TimeSpan.FromSeconds(2));
+            //Application.Loading.Wait(TimeSpan.FromSeconds(2));
 
             Application.Body.ViewPanel.Table.GetCell()
                 .WithRequirement(new TableCellRequirement().ByColumn(column).And().ByValueEquality("Re: " + message).Perform())
                 .Perform()
                 .Click();
 
-            Application.Loading.Wait(TimeSpan.FromSeconds(2));
+            //Application.Loading.Wait(TimeSpan.FromSeconds(2));
 
             objects = Application.Body.ViewPanel.GetComponent<ContainerComponent>()
                 .WithRequirement(new ContainerRequirement<ContainerComponent>().ByLabelEquality("Объекты:").Perform())

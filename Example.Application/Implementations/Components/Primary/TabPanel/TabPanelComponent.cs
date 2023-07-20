@@ -15,9 +15,9 @@ namespace Example.Application.Implementations.Components.Primary.TabPanel
         protected override IDescription InitializeDescription() => DEFAULT_DESCRIPTION;
 
         public virtual IWebComponentBuilder<ITabComponent> GetTab() =>
-            GetComponent<ITabComponent>(typeof(TabComponent));
+            GetComponent<ITabComponent>().WithType(typeof(TabComponent));
 
         public virtual IWebComponentCollectionBuilder<ITabComponent> GetTabs() =>
-            GetComponents<ITabComponent>(typeof(TabComponent));
+            GetComponents<ITabComponent>().WithType(typeof(TabComponent));
     }
 }

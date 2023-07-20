@@ -15,7 +15,7 @@ namespace Example.Application.Test
     [AllureNUnit]
     public abstract class WebApplicationTest
     {
-        protected static bool IsRemoted => (IWebComponent.Configuration.Driver as RemoteWebDriver) != null;
+        protected static bool IsRemoted => (IWebComponent.Configuration.GetDeafultDriver() as RemoteWebDriver) != null;
 
         protected static IContext Context => new Context();
 
@@ -33,8 +33,8 @@ namespace Example.Application.Test
         public virtual void Setup()
         {
             IWebComponent.Configuration = new Configuration(Driver, Timeout);
-            IWebComponent.Configuration.Driver.Navigate().GoToUrl(Address);
-            IWebComponent.Configuration.Driver.Manage().Window.Maximize();
+            IWebComponent.Configuration.GetDeafultDriver().Navigate().GoToUrl(Address);
+            IWebComponent.Configuration.GetDeafultDriver().Manage().Window.Maximize();
             IWebComponent.Context = Context;
 
             Application = IWebComponent.Context.GetComponent<ApplicationComponent>().Perform();
@@ -46,7 +46,7 @@ namespace Example.Application.Test
         public virtual void TearDown()
         {
             AddVideo();
-            IWebComponent.Configuration.Driver.Dispose();
+            IWebComponent.Configuration.GetDeafultDriver().Dispose();
         }
 
         protected void LogIn(string username, string password)
@@ -77,7 +77,7 @@ namespace Example.Application.Test
                 return;
 
             var allure = Allure.Net.Commons.AllureLifecycle.Instance;
-            var src = $"{Host}video/{(IWebComponent.Configuration.Driver as RemoteWebDriver)?.SessionId}.mp4";
+            var src = $"{Host}video/{(IWebComponent.Configuration.GetDeafultDriver() as RemoteWebDriver)?.SessionId}.mp4";
             var html = $"<html><body><video width='100%' height='100%' controls autoplay><source src='{src}' type='video/mp4'></video></body></html>";
 
             var content = Encoding.UTF8.GetBytes(html);

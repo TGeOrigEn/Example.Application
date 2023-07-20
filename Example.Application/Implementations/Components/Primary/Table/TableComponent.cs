@@ -13,21 +13,21 @@ namespace Example.Application.Implementations.Components.Primary.Table
         protected override IDescription InitializeDescription() => DEFAULT_DESCRIPTION;
 
         public virtual IWebComponentBuilder<ITableCellComponent> GetCell() =>
-            GetComponent<ITableCellComponent>(typeof(TableCellComponent));
+            GetComponent<ITableCellComponent>().WithType(typeof(TableCellComponent));
 
         public virtual IWebComponentCollectionBuilder<ITableCellComponent> GetCells() =>
-            GetComponents<ITableCellComponent>(typeof(TableCellComponent));
+            GetComponents<ITableCellComponent>().WithType(typeof(TableCellComponent));
 
         public virtual IWebComponentBuilder<ITableColumnComponent> GetColumn() =>
-            GetComponent<ITableColumnComponent>(typeof(TableColumnComponent));
+            GetComponent<ITableColumnComponent>().WithType(typeof(TableColumnComponent));
 
         public virtual IWebComponentCollectionBuilder<ITableColumnComponent> GetColumns() =>
-            GetComponents<ITableColumnComponent>(typeof(TableColumnComponent));
+            GetComponents<ITableColumnComponent>().WithType(typeof(TableColumnComponent));
 
         public virtual IWebComponentBuilder<ITableRowComponent> GetRow() =>
-            GetComponent<ITableRowComponent>(typeof(TableRowComponent));
+            GetComponent<ITableRowComponent>().WithType(typeof(TableRowComponent));
 
         public virtual IWebComponentCollectionBuilder<ITableRowComponent> GetRows() =>
-            GetComponents<ITableRowComponent>(typeof(TableRowComponent));
+            GetComponents<ITableRowComponent>().WithType(typeof(TableRowComponent));
     }
 }

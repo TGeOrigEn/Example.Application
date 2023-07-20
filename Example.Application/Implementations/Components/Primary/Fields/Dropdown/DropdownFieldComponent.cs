@@ -1,6 +1,5 @@
 ﻿using Empyrean.Core.Implementations;
 using Empyrean.Core.Interfaces;
-using Example.Application.Implementations.Components.Primary.Fields;
 using Example.Application.Interfaces.Components.Primary.Fields.Dropdown;
 
 namespace Example.Application.Implementations.Components.Primary.Fields.Dropdown
@@ -31,10 +30,10 @@ namespace Example.Application.Implementations.Components.Primary.Fields.Dropdown
         public virtual bool CanHaveElements() => containerComponent.IsAvalable();
 
         public virtual IWebComponentCollectionBuilder<IDropdownFieldElementComponent> GetElements() =>
-            GetComponents<IDropdownFieldElementComponent>(typeof(DropdownFieldElementComponent));
+            GetComponents<IDropdownFieldElementComponent>().WithType(typeof(DropdownFieldElementComponent));
 
         public virtual IWebComponentBuilder<IDropdownFieldElementComponent> GetElement() =>
-            GetComponent<IDropdownFieldElementComponent>(typeof(DropdownFieldElementComponent));
+            GetComponent<IDropdownFieldElementComponent>().WithType(typeof(DropdownFieldElementComponent));
 
         public virtual void ClickOnTrigger() => triggerComponent.Actions.Click();
     }

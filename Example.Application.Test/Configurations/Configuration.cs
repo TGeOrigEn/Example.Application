@@ -1,4 +1,4 @@
-﻿using Empyrean.Core.Allure.Implementations;
+﻿using Empyrean.Core.Implementations;
 using Empyrean.Core.Interfaces;
 using OpenQA.Selenium;
 
@@ -14,6 +14,10 @@ namespace Example.Application.Test.Configurations
             (Driver, Timeout) = (driver, timeout);
 
         public IActions GetActions(IWebComponent component) =>
-            new Actions(component);
+            new Empyrean.Core.Allure.Implementations.Actions(new Actions(component));
+
+        public IWebDriver GetDeafultDriver() => Driver;
+
+        public TimeSpan GetDeafultTimeout() => Timeout;
     }
 }

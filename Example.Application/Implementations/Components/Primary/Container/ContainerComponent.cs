@@ -24,10 +24,10 @@ namespace Example.Application.Implementations.Components.Primary.Container
         protected override IDescription InitializeDescription() => DEFAULT_DESCRIPTION;
 
         public IWebComponentBuilder<IContainerElementComponent> GetElement() =>
-            GetComponent<IContainerElementComponent>(typeof(ContainerElementComponent));
+            GetComponent<IContainerElementComponent>().WithType(typeof(ContainerElementComponent));
 
         public IWebComponentCollectionBuilder<IContainerElementComponent> GetElements() =>
-            GetComponents<IContainerElementComponent>(typeof(ContainerElementComponent));
+            GetComponents<IContainerElementComponent>().WithType(typeof(ContainerElementComponent));
 
         public string GetLabel() => labelComponent.Properties.GetText();
 

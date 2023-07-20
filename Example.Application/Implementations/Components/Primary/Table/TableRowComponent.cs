@@ -23,10 +23,10 @@ namespace Example.Application.Implementations.Components.Primary.Table
         public virtual void DoubleClick() => Actions.DoubleClick();
 
         public virtual IWebComponentBuilder<ITableCellComponent> GetCell() =>
-            GetComponent<ITableCellComponent>(typeof(TableCellComponent));
+            GetComponent<ITableCellComponent>().WithType(typeof(TableCellComponent));
 
         public virtual IWebComponentCollectionBuilder<ITableCellComponent> GetCells() =>
-            GetComponents<ITableCellComponent>(typeof(TableCellComponent));
+            GetComponents<ITableCellComponent>().WithType(typeof(TableCellComponent));
 
         public virtual bool IsSelected() => GetAttribute(_SELECTED_ATTRIBUTE, this).Equals("true");
     }

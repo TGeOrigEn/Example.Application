@@ -15,9 +15,9 @@ namespace Example.Application.Implementations.Components.Primary.Dropdown
         protected override IDescription InitializeDescription() => DEFAULT_DESCRIPTION;
 
         public virtual IWebComponentBuilder<IDropdownElementComponent> GetElement() =>
-            GetComponent<IDropdownElementComponent>(typeof(DropdownElementComponent));
+            GetComponent<IDropdownElementComponent>().WithType(typeof(DropdownElementComponent));
 
         public virtual IWebComponentCollectionBuilder<IDropdownElementComponent> GetElements() =>
-            GetComponents<IDropdownElementComponent>(typeof(DropdownElementComponent));
+            GetComponents<IDropdownElementComponent>().WithType(typeof(DropdownElementComponent));
     }
 }

@@ -15,9 +15,9 @@ namespace Example.Application.Implementations.Components.Primary.Menu
         protected override IDescription InitializeDescription() => DEFAULT_DESCRIPTION;
 
         public virtual IWebComponentBuilder<IMenuElementComponent> GetElement() =>
-            GetComponent<IMenuElementComponent>(typeof(MenuElementComponent));
+            GetComponent<IMenuElementComponent>().WithType(typeof(MenuElementComponent));
 
         public virtual IWebComponentCollectionBuilder<IMenuElementComponent> GetElements() =>
-            GetComponents<IMenuElementComponent>(typeof(MenuElementComponent));
+            GetComponents<IMenuElementComponent>().WithType(typeof(MenuElementComponent));
     }
 }

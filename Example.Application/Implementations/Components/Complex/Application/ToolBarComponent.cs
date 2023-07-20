@@ -63,6 +63,6 @@ namespace Example.Application.Implementations.Components.Complex.Application
         protected override IDescription InitializeDescription() => DEFAULT_DESCRIPTION;
 
         public IWebComponentBuilder<IButtonComponent> GetButton() =>
-            GetComponent<IButtonComponent>(typeof(ButtonComponent));
+            GetComponent<IButtonComponent>().WithType(typeof(ButtonComponent));
     }
 }

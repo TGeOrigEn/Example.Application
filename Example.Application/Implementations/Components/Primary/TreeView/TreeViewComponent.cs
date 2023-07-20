@@ -15,9 +15,9 @@ namespace Example.Application.Implementations.Components.Primary.TreeView
         protected override IDescription InitializeDescription() => DEFAULT_DESCRIPTION;
 
         public virtual IWebComponentCollectionBuilder<ITreeViewElementComponent> GetElements() =>
-            GetComponents<ITreeViewElementComponent>(typeof(TreeViewElementComponent));
+            GetComponents<ITreeViewElementComponent>().WithType(typeof(TreeViewElementComponent));
 
         public virtual IWebComponentBuilder<ITreeViewElementComponent> GetElement() =>
-            GetComponent<ITreeViewElementComponent>(typeof(TreeViewElementComponent));
+            GetComponent<ITreeViewElementComponent>().WithType(typeof(TreeViewElementComponent));
     }
 }

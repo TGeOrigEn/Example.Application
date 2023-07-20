@@ -50,12 +50,12 @@ namespace Example.Application.Implementations.Components.Complex.Application
         protected override IDescription InitializeDescription() => DEFAULT_DESCRIPTION;
 
         public IWebComponentBuilder<IMenuComponent> GetMenu() =>
-            GetComponent<IMenuComponent>(typeof(MenuComponent));
+            GetComponent<IMenuComponent>().WithType(typeof(MenuComponent));
 
         public IWebComponentBuilder<IMessageBoxComponent> GetMessageBox() =>
-            GetComponent<IMessageBoxComponent>(typeof(MessageBoxComponent));
+            GetComponent<IMessageBoxComponent>().WithType(typeof(MessageBoxComponent));
 
         public IWebComponentBuilder<IWindowComponent> GetWindow() =>
-            GetComponent<IWindowComponent>(typeof(WindowComponent));
+            GetComponent<IWindowComponent>().WithType(typeof(WindowComponent));
     }
 }
