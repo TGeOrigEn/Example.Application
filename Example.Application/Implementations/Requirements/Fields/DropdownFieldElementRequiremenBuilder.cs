@@ -12,10 +12,10 @@ namespace Example.Application.Implementations.Requirements.Fields
         where TBuilder : DropdownFieldElementRequiremenBuilder<TComponent, TBuilder>
         where TComponent : IDropdownFieldElementComponent
     {
-        public virtual IOperationBuilder<TComponent, TBuilder> ByNameEquality(string value) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> ByNameEquality(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetName(), value, "Имеет имя"));
 
-        public virtual IOperationBuilder<TComponent, TBuilder> ByNameContent(string value) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> ByNameContent(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetName(), value, "Содержит имя", ByStringContent));
     }
 }

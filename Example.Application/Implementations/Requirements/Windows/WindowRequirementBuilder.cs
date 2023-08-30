@@ -12,10 +12,10 @@ namespace Example.Application.Implementations.Requirements.Windows
         where TBuilder : WindowRequirementBuilder<TComponent, TBuilder>
         where TComponent : IWindowComponent
     {
-        public virtual IOperationBuilder<TComponent, TBuilder> ByTitleEquality(string value) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> ByTitleEquality(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetTitle(), value, "Имеет имя"));
 
-        public virtual IOperationBuilder<TComponent, TBuilder> ByTitleContent(string value) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> ByTitleContent(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetTitle(), value, "Содержит имя", ByStringContent));
     }
 }

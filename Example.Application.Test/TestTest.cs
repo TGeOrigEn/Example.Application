@@ -13,6 +13,7 @@ using Example.Application.Implementations.Requirements.Menu;
 using Example.Application.Implementations.Requirements.Table;
 using Example.Application.Implementations.Requirements.TreeView;
 using Example.Application.Implementations.Requirements.Windows;
+using Example.Application.Interfaces.Components.Primary.Table;
 using Example.Application.Test.Drivers;
 using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
@@ -21,9 +22,9 @@ namespace Example.Application.Test
 {
     public class TestTest : WebApplicationTest
     {
-        protected override IWebDriver Driver => Chrome.Remote(Host);
-        /*protected override IWebDriver Driver => Chrome.Local();*/
-        protected override string Address => "http://10.0.11.18:8081/client/";
+        /*protected override IWebDriver Driver => Chrome.Remote(Host);*/
+        protected override IWebDriver Driver => Chrome.Local();
+        protected override string Address => "http://192.168.1.88:8086/client";
 
         [SetUp]
         public override void Setup()
@@ -90,14 +91,11 @@ namespace Example.Application.Test
 
             var objectNames = new List<string>();
 
-            selectObjectWindow.GetComponents<TableRowComponent>().Perform().Take(2).ToList().ForEach(row =>
-            {
-                var cells = row.GetCells().Perform().ToArray();
-                var objectName = cells[1].GetValue();
-                cells[0].Click();
+            clickOn(selectObjectWindow.GetComponent<TableRowComponent>().Perform(), objectNames);
 
-                objectNames.Add(objectName);
-            });
+            clickOn(selectObjectWindow.GetComponent<TableRowComponent>()
+                .WithDescription(TableRowComponent.DEFAULT_DESCRIPTION.With(1))
+                .Perform(), objectNames);
 
             selectObjectWindow.OkButton.Click();
 
@@ -181,6 +179,15 @@ namespace Example.Application.Test
                 .Perform().GetElements().Perform();
 
             objects.ToList().ForEach(obj => Assert.Contains(obj.GetName(), objectNames, ""));
+        }
+
+        private void clickOn(ITableRowComponent tableRow, List<string> objectNames)
+        {
+            var cells = tableRow.GetCells().Perform().ToArray();
+            var objectName = cells[1].GetValue();
+            cells[0].Click();
+
+            objectNames.Add(objectName);
         }
     }
 }

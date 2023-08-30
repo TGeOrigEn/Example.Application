@@ -13,13 +13,13 @@ namespace Example.Application.Implementations.Requirements.Table
         where TBuilder : TableColumnRequirementBuilder<TComponent, TBuilder>
         where TComponent : ITableColumnComponent
     {
-        public IOperationBuilder<TComponent, TBuilder> BySortEquality(SortVariant value) =>
+        public IRequirementCombiner<TComponent, TBuilder> BySortEquality(SortVariant value) =>
             CreateBuilder(new Requirement<TComponent, SortVariant>(component => component.GetSort(), value, "Сортировка"));
 
-        public IOperationBuilder<TComponent, TBuilder> ByNameEquality(string value) =>
+        public IRequirementCombiner<TComponent, TBuilder> ByNameEquality(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetName(), value, "Имеет имя"));
 
-        public IOperationBuilder<TComponent, TBuilder> ByNameContent(string value) =>
+        public IRequirementCombiner<TComponent, TBuilder> ByNameContent(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetName(), value, "Содержит имя", ByStringContent));
     }
 }

@@ -15,13 +15,13 @@ namespace Example.Application.Test
     [AllureNUnit]
     public abstract class WebApplicationTest
     {
-        protected static bool IsRemoted => (IWebComponent.Configuration.GetDeafultDriver() as RemoteWebDriver) != null;
+        protected static bool IsRemoted => (IWebComponent.Configuration.Driver as RemoteWebDriver) != null;
 
         protected static IContext Context => new Context();
 
         protected virtual TimeSpan Timeout { get; } = TimeSpan.FromSeconds(5);
 
-        protected virtual string Host { get; } = "http://10.0.11.18:4444/";
+        protected virtual string Host { get; } = "http://docker-dev:4444/";
 
         protected abstract IWebDriver Driver { get; }
 
@@ -32,12 +32,11 @@ namespace Example.Application.Test
         [SetUp]
         public virtual void Setup()
         {
-            IWebComponent.Configuration = new Configuration(Driver, Timeout);
-            IWebComponent.Configuration.GetDeafultDriver().Navigate().GoToUrl(Address);
-            IWebComponent.Configuration.GetDeafultDriver().Manage().Window.Maximize();
-            IWebComponent.Context = Context;
+            IWebComponent.Configuration = new Configuration(Driver, Context, Timeout);
+            IWebComponent.Configuration.Driver.Navigate().GoToUrl(Address);
+            IWebComponent.Configuration.Driver.Manage().Window.Maximize();
 
-            Application = IWebComponent.Context.GetComponent<ApplicationComponent>().Perform();
+            Application = IWebComponent.Configuration.Context.GetComponent<ApplicationComponent>().Perform();
 
             Thread.Sleep(1_750);
         }
@@ -46,12 +45,12 @@ namespace Example.Application.Test
         public virtual void TearDown()
         {
             AddVideo();
-            IWebComponent.Configuration.GetDeafultDriver().Dispose();
+            IWebComponent.Configuration.Driver.Dispose();
         }
 
         protected void LogIn(string username, string password)
         {
-            IWebComponent.Context.GetComponent<AuthorizationFormComponent>().Perform().LogIn(username, password);
+            IWebComponent.Configuration.Context.GetComponent<AuthorizationFormComponent>().Perform().LogIn(username, password);
             Application.Loading.Wait(TimeSpan.FromSeconds(1));
         }
 
@@ -77,7 +76,7 @@ namespace Example.Application.Test
                 return;
 
             var allure = Allure.Net.Commons.AllureLifecycle.Instance;
-            var src = $"{Host}video/{(IWebComponent.Configuration.GetDeafultDriver() as RemoteWebDriver)?.SessionId}.mp4";
+            var src = $"{Host}video/{(IWebComponent.Configuration.Driver as RemoteWebDriver)?.SessionId}.mp4";
             var html = $"<html><body><video width='100%' height='100%' controls autoplay><source src='{src}' type='video/mp4'></video></body></html>";
 
             var content = Encoding.UTF8.GetBytes(html);

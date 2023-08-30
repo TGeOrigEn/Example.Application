@@ -12,13 +12,13 @@ namespace Example.Application.Implementations.Requirements.Buttons
         where TBuilder : ButtonRequirementBuilder<TComponent, TBuilder>
         where TComponent : IButtonComponent
     {
-        public IOperationBuilder<TComponent, TBuilder> HasName(bool flag = true) =>
+        public IRequirementCombiner<TComponent, TBuilder> HasName(bool flag = true) =>
             CreateBuilder(new Requirement<TComponent, bool>(component => component.HasName(), flag, "Имеет имя"));
 
-        public virtual IOperationBuilder<TComponent, TBuilder> ByNameEquality(string value) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> ByNameEquality(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetName(), value, "Имеет имя"));
 
-        public virtual IOperationBuilder<TComponent, TBuilder> ByNameContent(string value) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> ByNameContent(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetName(), value, "Содержит имя", ByStringContent));
     }
 }

@@ -12,13 +12,13 @@ namespace Example.Application.Implementations.Requirements.Dropdown
         where TBuilder : ContainerRequirementBuilder<TComponent, TBuilder>
         where TComponent : IContainerComponent
     {
-        public virtual IOperationBuilder<TComponent, TBuilder> HasLabel(bool flag = true) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> HasLabel(bool flag = true) =>
             CreateBuilder(new Requirement<TComponent, bool>(component => component.HasLabel(), flag, "Имеет название"));
 
-        public virtual IOperationBuilder<TComponent, TBuilder> ByLabelEquality(string value) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> ByLabelEquality(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetLabel(), value, "Имеет название"));
 
-        public virtual IOperationBuilder<TComponent, TBuilder> ByLabelContent(string value) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> ByLabelContent(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetLabel(), value, "Содержит название", ByStringContent));
     }
 }

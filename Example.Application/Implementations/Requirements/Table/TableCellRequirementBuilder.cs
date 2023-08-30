@@ -13,16 +13,16 @@ namespace Example.Application.Implementations.Requirements.Table
         where TBuilder : TableCellRequirementBuilder<TComponent, TBuilder>
         where TComponent : ITableCellComponent
     {
-        public virtual IOperationBuilder<TComponent, TBuilder> HasCheckBox(bool flag = true) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> HasCheckBox(bool flag = true) =>
             CreateBuilder(new Requirement<TComponent, bool>(component => component.HasCheckBox(), flag, "Имеет флаг"));
 
-        public virtual IOperationBuilder<TComponent, TBuilder> HasIcon(bool flag = true) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> HasIcon(bool flag = true) =>
             CreateBuilder(new Requirement<TComponent, bool>(component => component.HasIcon(), flag, "Имеет иконку"));
 
-        public virtual IOperationBuilder<TComponent, TBuilder> IsChecked(bool flag = true) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> IsChecked(bool flag = true) =>
             CreateBuilder(new Requirement<TComponent, bool>(component => component.IsChecked(), flag, "Флаг"));
 
-        public virtual IOperationBuilder<TComponent, TBuilder> ByColumn(ITableColumnComponent column)
+        public virtual IRequirementCombiner<TComponent, TBuilder> ByColumn(ITableColumnComponent column)
         {
             int GetColumnIndex()
             {
@@ -35,16 +35,16 @@ namespace Example.Application.Implementations.Requirements.Table
             return CreateBuilder(new Requirement<TComponent, int>(component => component.Index, () => GetColumnIndex(), description));
         }
 
-        public override IOperationBuilder<TComponent, TBuilder> ByValueEquality(string? value) =>
+        public override IRequirementCombiner<TComponent, TBuilder> ByValueEquality(string? value) =>
             CreateBuilder(new Requirement<TComponent, string?>(component => component.GetValue(), value, "Имеет значение"));
 
-        public virtual IOperationBuilder<TComponent, TBuilder> ByIconEquality(string value) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> ByIconEquality(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetIcon(), value, "Имеет иконку"));
 
-        public override IOperationBuilder<TComponent, TBuilder> ByValueContent(string? value) =>
+        public override IRequirementCombiner<TComponent, TBuilder> ByValueContent(string? value) =>
             CreateBuilder(new Requirement<TComponent, string?>(component => component.GetValue(), value, "Содержит значение", ByStringContent));
 
-        public virtual IOperationBuilder<TComponent, TBuilder> ByIconContent(string value) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> ByIconContent(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetIcon(), value, "Содержит иконку", ByStringContent));
     }
 }

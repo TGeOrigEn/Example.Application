@@ -12,25 +12,25 @@ namespace Example.Application.Implementations.Requirements.TreeView
         where TBuilder : TreeViewElementRequirementBuilder<TComponent, TBuilder>
         where TComponent : ITreeViewElementComponent
     {
-        public virtual IOperationBuilder<TComponent, TBuilder> HasIcon(bool flag = true) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> HasIcon(bool flag = true) =>
             CreateBuilder(new Requirement<TComponent, bool>(component => component.HasIcon(), flag, "Имеет иконку"));
 
-        public virtual IOperationBuilder<TComponent, TBuilder> IsExpandable(bool flag = true) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> IsExpandable(bool flag = true) =>
             CreateBuilder(new Requirement<TComponent, bool>(component => component.IsExpandable(), flag, "Разворачиваем"));
 
-        public virtual IOperationBuilder<TComponent, TBuilder> IsExpanded(bool flag = true) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> IsExpanded(bool flag = true) =>
             CreateBuilder(new Requirement<TComponent, bool>(component => component.IsExpanded(), flag, "Развёрнут"));
 
-        public virtual IOperationBuilder<TComponent, TBuilder> ByIconEquality(string value) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> ByIconEquality(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetIcon(), value, "Имеет иконку"));
 
-        public virtual IOperationBuilder<TComponent, TBuilder> ByNameEquality(string value) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> ByNameEquality(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetName(), value, "Имеет имя"));
 
-        public virtual IOperationBuilder<TComponent, TBuilder> ByNameContent(string value) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> ByNameContent(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetName(), value, "Содержит имя", ByStringContent));
 
-        public virtual IOperationBuilder<TComponent, TBuilder> ByIconContent(string value) =>
+        public virtual IRequirementCombiner<TComponent, TBuilder> ByIconContent(string value) =>
             CreateBuilder(new Requirement<TComponent, string>(component => component.GetIcon(), value, "Содержит иконку", ByStringContent));
     }
 }
